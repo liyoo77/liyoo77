@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhongjinhai International Hainan Co., Ltd. | Steel Trading</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            gray: '#f5f5f7',
+                            text: '#1d1d1f',
+                            subtext: '#6e6e73',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'San Francisco', 'Segoe UI', 'Roboto', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .glass {
+                background: rgba(255, 255, 255, 0.65);
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+                border: 1px solid rgba(255,255,255,0.7);
+            }
+            .glass-dark {
+                background: rgba(255, 255, 255, 0.55);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1px solid rgba(255,255,255,0.6);
+            }
+            .card-hover {
+                transition: all 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            .btn-spring:active {
+                transform: scale(0.96);
+                transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+        }
+    </style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #f2f2f4 0%, #e9e9ed 100%);
+            min-height: 100vh;
+            font-family: -apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+            color: #1d1d1f;
+        }
+        .card-wrap:hover .product-card {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.08);
+        }
+        .product-card {
+            transition: all 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        /* Apple style scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,0.12);
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body>
+<!-- Top Fixed Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+        <div class="font-semibold text-lg md:text-xl">Zhongjinhai International Hainan Co., Ltd.</div>
+        <nav class="hidden md:flex gap-8">
+            <a href="#home" target="_blank" class="text-apple-subtext hover:text-apple-text transition-colors">Home</a>
+            <a href="#products" target="_blank" class="text-apple-subtext hover:text-apple-text transition-colors">Products</a>
+            <a href="#about" target="_blank" class="text-apple-subtext hover:text-apple-text transition-colors">About Us</a>
+            <a href="#contact" target="_blank" class="text-apple-subtext hover:text-apple-text transition-colors">Contact</a>
+        </nav>
+        <button class="md:hidden btn-spring glass px-3 py-2 rounded-xl text-sm">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<!-- Main Content: Left + Right Layout -->
+<main class="pt-24 max-w-7xl mx-auto px-4 md:px-6 pb-20 flex flex-col md:flex-row gap-6">
+    <!-- Left Sidebar 20% Sticky -->
+    <aside class="md:w-[20%] w-full">
+        <div class="md:sticky md:top-28 glass rounded-2xl p-6">
+            <h3 class="text-base font-semibold mb-4">Business Scope</h3>
+            <ul class="space-y-3 text-apple-subtext">
+                <li class="hover:text-apple-text transition-colors cursor-pointer btn-spring">
+                    <i class="fa fa-angle-right mr-2"></i>Steel Plates
+                </li>
+                <li class="hover:text-apple-text transition-colors cursor-pointer btn-spring">
+                    <i class="fa fa-angle-right mr-2"></i>Steel Pipes
+                </li>
+                <li class="hover:text-apple-text transition-colors cursor-pointer btn-spring">
+                    <i class="fa fa-angle-right mr-2"></i>Steel Profiles
+                </li>
+                <li class="hover:text-apple-text transition-colors cursor-pointer btn-spring">
+                    <i class="fa fa-angle-right mr-2"></i>Stainless Steel
+                </li>
+                <li class="hover:text-apple-text transition-colors cursor-pointer btn-spring">
+                    <i class="fa fa-angle-right mr-2"></i>Export Service
+                </li>
+            </ul>
+            <div class="mt-8 pt-6 border-t border-white/40">
+                <p class="text-sm text-apple-subtext">Professional steel exporter with stable supply & global delivery</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Right Area 80% Grid Cards -->
+    <section class="md:w-[80%] w-full">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1 -->
+            <div class="card-wrap">
+                <div class="product-card glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+                        <i class="fa fa-cubes text-5xl text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-semibold text-lg mb-2">Hot Rolled Steel Plate</h4>
+                        <p class="text-apple-subtext text-sm leading-relaxed">Various sizes of HR plates for engineering machinery & steel structures. Bulk export orders supported, custom cutting available.</p>
+                        <button class="mt-4 btn-spring glass px-4 py-2 rounded-xl text-sm">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="card-wrap">
+                <div class="product-card glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+                        <i class="fa fa-pipe text-5xl text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-semibold text-lg mb-2">Seamless Steel Pipe</h4>
+                        <p class="text-apple-subtext text-sm leading-relaxed">Seamless tubes for fluid & high pressure pipeline. ASTM / EN standard, exported to Southeast Asia and Middle East.</p>
+                        <button class="mt-4 btn-spring glass px-4 py-2 rounded-xl text-sm">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card-wrap">
+                <div class="product-card glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+                        <i class="fa fa-square text-5xl text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-semibold text-lg mb-2">H-Beam & Angle Steel</h4>
+                        <p class="text-apple-subtext text-sm leading-relaxed">Structural steel profiles, full size range, stable quality. Third-party inspection available, FOB/CIF trade terms.</p>
+                        <button class="mt-4 btn-spring glass px-4 py-2 rounded-xl text-sm">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="card-wrap">
+                <div class="product-card glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+                        <i class="fa fa-shield text-5xl text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-semibold text-lg mb-2">Stainless Steel Plate</h4>
+                        <p class="text-apple-subtext text-sm leading-relaxed">304 / 316 stainless sheets with anti-corrosion performance, widely used in chemical & shipbuilding industry. Export packing.</p>
+                        <button class="mt-4 btn-spring glass px-4 py-2 rounded-xl text-sm">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="card-wrap">
+                <div class="product-card glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+                        <i class="fa fa-ship text-5xl text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-semibold text-lg mb-2">Export Service</h4>
+                        <p class="text-apple-subtext text-sm leading-relaxed">One-stop foreign trade solution including customs clearance, ocean freight & documents. Familiar with international steel procurement standards.</p>
+                        <button class="mt-4 btn-spring glass px-4 py-2 rounded-xl text-sm">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 6 -->
+            <div class="card-wrap">
+                <div class="product-card glass rounded-2xl overflow-hidden">
+                    <div class="h-48 bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
+                        <i class="fa fa-certificate text-5xl text-slate-400"></i>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-semibold text-lg mb-2">Material Test Certificates</h4>
+                        <p class="text-apple-subtext text-sm leading-relaxed">MTC mill test certificates and third-party inspection reports to meet customs and project acceptance requirements worldwide.</p>
+                        <button class="mt-4 btn-spring glass px-4 py-2 rounded-xl text-sm">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer Area -->
+<footer class="glass-dark mt-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Zhongjinhai International Hainan Co., Ltd.</h4>
+                <p class="text-apple-subtext text-sm leading-relaxed">Professional steel foreign trade supplier. We export various steel products globally, offering stable supply chain and complete international trade solutions.</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Contact Info</h4>
+                <ul class="space-y-2 text-sm text-apple-subtext">
+                    <li><i class="fa fa-envelope mr-2"></i>sales@yourcompany.com</li>
+                    <li><i class="fa fa-phone mr-2"></i>+86 138 0000 0000</li>
+                    <li><i class="fa fa-map-marker mr-2"></i>Hainan, China</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-lg mb-4">QR Code</h4>
+                <div class="w-36 h-36 glass rounded-xl flex items-center justify-center">
+                    <span class="text-apple-subtext text-sm">QR Code<br/>Placeholder</span>
+                </div>
+            </div>
+        </div>
+        <div class="mt-10 pt-6 border-t border-white/40 text-center text-apple-subtext text-xs">
+            © 2026 Zhongjinhai International Hainan Co., Ltd. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
