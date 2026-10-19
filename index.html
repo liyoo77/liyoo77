@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhongjinhai International Hainan Co., Ltd. | Global Steel Trading</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        swiss: {
+                            black: '#0D0D0D',
+                            red: '#E63946',
+                            gray: '#F4F4F6',
+                            border: '#E2E8F0',
+                            darkGray: '#1A1A1A',
+                            muted: '#64748B'
+                        }
+                    },
+                    transitionTimingFunction: {
+                        'spring': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+                        'spring-damped': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Swiss Typographic & Physics-based Interactions */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+            color: #0D0D0D;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Spring Physics Button Click Effect */
+        .btn-spring {
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease, background-color 0.2s ease;
+            will-change: transform;
+        }
+        .btn-spring:active {
+            transform: scale(0.92) translateY(2px);
+            transition: transform 0.05s ease-out;
+        }
+
+        /* Card Hover Elevation */
+        .swiss-card {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+        }
+        .swiss-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.07), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+            border-color: #0D0D0D;
+        }
+
+        /* Grid Image Zoom */
+        .steel-grid-item .bg-img {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .steel-grid-item:hover .bg-img {
+            transform: scale(1.08);
+        }
+
+        /* Pulsing Map Nodes */
+        @keyframes mapPulse {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(2.2); opacity: 0; }
+            100% { transform: scale(0.95); opacity: 0; }
+        }
+        .pulse-ring {
+            animation: mapPulse 2.5s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAFAFA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen border-t-4 border-swiss-black selection:bg-swiss-black selection:text-white">
+
+    <!-- TOP HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-swiss-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Upper Header: Branding & Controls -->
+            <div class="flex items-center justify-between h-20 border-b border-slate-100">
+                <!-- Brand / Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 bg-swiss-black text-white flex items-center justify-center font-black text-xl tracking-tighter group-hover:bg-swiss-red transition-colors duration-300">
+                        ZJH
+                    </div>
+                    <div>
+                        <span class="block text-xs font-mono tracking-widest text-swiss-muted uppercase">Global Steel Supply</span>
+                        <h1 class="text-base sm:text-lg font-bold tracking-tight text-swiss-black leading-none">
+                            Zhongjinhai International Hainan Co., Ltd.
+                        </h1>
+                    </div>
+                </a>
+
+                <!-- Search & Language Switcher -->
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <!-- Search Trigger Button -->
+                    <button id="searchBtn" class="btn-spring p-2.5 rounded-sm border border-swiss-border hover:border-swiss-black text-swiss-black flex items-center gap-2 text-xs font-mono uppercase bg-white">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                        <span class="hidden sm:inline">Search Spec</span>
+                    </button>
+
+                    <!-- Multi-language Dropdown -->
+                    <div class="relative inline-block text-left">
+                        <button id="langBtn" class="btn-spring px-3 py-2 rounded-sm border border-swiss-border hover:border-swiss-black text-xs font-mono font-bold uppercase flex items-center gap-1.5 bg-white">
+                            <span id="currentLang">EN</span>
+                            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-28 bg-white border border-swiss-black shadow-lg py-1 z-50">
+                            <a href="#" onclick="changeLang('EN')" class="block px-4 py-2 text-xs font-mono hover:bg-swiss-gray font-bold text-swiss-black">EN - English</a>
+                            <a href="#" onclick="changeLang('CN')" class="block px-4 py-2 text-xs font-mono hover:bg-swiss-gray text-slate-600">CN - 中文</a>
+                            <a href="#" onclick="changeLang('DE')" class="block px-4 py-2 text-xs font-mono hover:bg-swiss-gray text-slate-600">DE - Deutsch</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lower Header: Primary Categories Navigation -->
+            <nav class="flex items-center justify-between overflow-x-auto py-3 no-scrollbar text-sm font-medium tracking-tight border-t border-slate-50">
+                <div class="flex items-center space-x-8 min-w-max">
+                    <a href="#company" target="_blank" class="text-swiss-black hover:text-swiss-red transition-colors py-1 font-semibold flex items-center gap-1.5">
+                        <span class="text-[10px] font-mono text-slate-400">01/</span> Company Profile
+                    </a>
+                    <a href="#products" target="_blank" class="text-swiss-black hover:text-swiss-red transition-colors py-1 font-semibold flex items-center gap-1.5">
+                        <span class="text-[10px] font-mono text-slate-400">02/</span> Products
+                    </a>
+                    <a href="#projects" target="_blank" class="text-swiss-black hover:text-swiss-red transition-colors py-1 font-semibold flex items-center gap-1.5">
+                        <span class="text-[10px] font-mono text-slate-400">03/</span> Projects
+                    </a>
+                    <a href="#advantages" target="_blank" class="text-swiss-black hover:text-swiss-red transition-colors py-1 font-semibold flex items-center gap-1.5">
+                        <span class="text-[10px] font-mono text-slate-400">04/</span> Our Advantages
+                    </a>
+                    <a href="#contact" target="_blank" class="text-swiss-black hover:text-swiss-red transition-colors py-1 font-semibold flex items-center gap-1.5">
+                        <span class="text-[10px] font-mono text-slate-400">05/</span> Contact Us
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center text-xs font-mono text-swiss-muted gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> HQ: Hainan FTP, China
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SEARCH OVERLAY MODAL -->
+    <div id="searchModal" class="fixed inset-0 bg-swiss-black/70 backdrop-blur-sm z-50 hidden flex items-start justify-center pt-24 px-4 transition-opacity duration-200 opacity-0">
+        <div class="bg-white border-2 border-swiss-black w-full max-w-2xl p-6 rounded-sm shadow-2xl relative">
+            <button id="closeSearch" class="absolute top-4 right-4 text-slate-400 hover:text-swiss-black p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <span class="text-xs font-mono uppercase text-swiss-muted block mb-2">// Global Inventory & Specification Search</span>
+            <input type="text" placeholder="e.g. ASTM A36 Beam, Stainless 316L, Galvanized Coil..." class="w-full text-lg font-mono border-b-2 border-swiss-black pb-2 focus:outline-none placeholder:text-slate-300">
+            <div class="mt-4 flex flex-wrap gap-2">
+                <span class="text-xs font-mono text-slate-400 py-1">Popular:</span>
+                <button class="text-xs font-mono px-2.5 py-1 bg-swiss-gray hover:bg-swiss-black hover:text-white transition-colors">H-Beams</button>
+                <button class="text-xs font-mono px-2.5 py-1 bg-swiss-gray hover:bg-swiss-black hover:text-white transition-colors">Seamless Pipe</button>
+                <button class="text-xs font-mono px-2.5 py-1 bg-swiss-gray hover:bg-swiss-black hover:text-white transition-colors">CRC/HRC Coils</button>
+                <button class="text-xs font-mono px-2.5 py-1 bg-swiss-gray hover:bg-swiss-black hover:text-white transition-colors">Rebar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+
+        <!-- FIRST SCREEN: HERO SECTION (55% / 45% SPLIT LAYOUT) -->
+        <section class="border-b border-swiss-border bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
+                <div class="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch min-h-[580px]">
+                    
+                    <!-- Left Side (55% Width): 3x3 Nine-Square Grid of Industrial Steel -->
+                    <div class="w-full lg:w-[55%] flex flex-col justify-center">
+                        <div class="grid grid-cols-3 gap-2 sm:gap-3 p-2 bg-swiss-gray border border-swiss-border rounded-sm">
+                            <!-- Grid 1 -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-slate-900 group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" alt="Structural Beams" class="bg-img absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Structural+Steel'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 p-2 sm:p-3 flex flex-col justify-end">
+                                    <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">01 / BEAMS</span>
+                                    <span class="text-xs font-bold text-white tracking-tight">H-Beams & I-Beams</span>
+                                </div>
+                            </div>
+
+                            <!-- Grid 2 -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-slate-900 group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1535813547-99c456a41d4a?auto=format&fit=crop&w=600&q=80" alt="Steel Coils" class="bg-img absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/334155/ffffff?text=Steel+Coils'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 p-2 sm:p-3 flex flex-col justify-end">
+                                    <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">02 / COILS</span>
+                                    <span class="text-xs font-bold text-white tracking-tight">HRC / CRC Coils</span>
+                                </div>
+                            </div>
+
+                            <!-- Grid 3 -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-slate-900 group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80" alt="Seamless Pipes" class="bg-img absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/0f172a/ffffff?text=Steel+Pipes'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 p-2 sm:p-3 flex flex-col justify-end">
+                                    <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">03 / PIPING</span>
+                                    <span class="text-xs font-bold text-white tracking-tight">Seamless Tubes</span>
+                                </div>
+                            </div>
+
+                            <!-- Grid 4 -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-slate-900 group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Stainless Steel" class="bg-img absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/475569/ffffff?text=Stainless'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 p-2 sm:p-3 flex flex-col justify-end">
+                                    <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">04 / ALLOY</span>
+                                    <span class="text-xs font-bold text-white tracking-tight">Stainless 304/316</span>
+                                </div>
+                            </div>
+
+                            <!-- Grid 5 (Center Highlight) -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-swiss-black group cursor-pointer border-2 border-swiss-black">
+                                <img src="https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=600&q=80" alt="Steel Processing" class="bg-img absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/000000/ffffff?text=All+Steel'">
+                                <div class="absolute inset-0 bg-swiss-black/40 group-hover:bg-transparent transition-colors p-2 sm:p-3 flex flex-col justify-between">
+                                    <span class="inline-block self-start px-1.5 py-0.5 bg-swiss-red text-white text-[9px] font-mono font-bold tracking-wider uppercase">HUB</span>
+                                    <div>
+                                        <span class="text-[10px] font-mono text-white/80 uppercase">05 / CORE</span>
+                                        <span class="text-xs font-extrabold text-white block uppercase tracking-wider">Heavy Plates</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Grid 6 -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-slate-900 group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=600&q=80" alt="Rebar" class="bg-img absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/1e293b/ffffff?text=Rebar'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 p-2 sm:p-3 flex flex-col justify-end">
+                                    <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">06 / REBAR</span>
+                                    <span class="text-xs font-bold text-white tracking-tight">Deformed Bars</span>
+                                </div>
+                            </div>
+
+                            <!-- Grid 7 -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-slate-900 group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1508873696983-2df5057d0256?auto=format&fit=crop&w=600&q=80" alt="Galvanized" class="bg-img absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/334155/ffffff?text=Galvanized'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 p-2 sm:p-3 flex flex-col justify-end">
+                                    <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">07 / COATED</span>
+                                    <span class="text-xs font-bold text-white tracking-tight">GI & PPGI Steel</span>
+                                </div>
+                            </div>
+
+                            <!-- Grid 8 -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-slate-900 group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=600&q=80" alt="Structural Framework" class="bg-img absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/0f172a/ffffff?text=Structural'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 p-2 sm:p-3 flex flex-col justify-end">
+                                    <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">08 / PROFILES</span>
+                                    <span class="text-xs font-bold text-white tracking-tight">Angles & Channels</span>
+                                </div>
+                            </div>
+
+                            <!-- Grid 9 -->
+                            <div class="steel-grid-item relative aspect-square overflow-hidden bg-slate-900 group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&w=600&q=80" alt="Marine Grade" class="bg-img absolute inset-0 w-full h-full object-cover opacity-85 group-hover:opacity-100" onerror="this.src='https://placehold.co/400x400/475569/ffffff?text=Marine+Steel'">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 p-2 sm:p-3 flex flex-col justify-end">
+                                    <span class="text-[10px] font-mono text-amber-400 uppercase tracking-widest">09 / SPECIAL</span>
+                                    <span class="text-xs font-bold text-white tracking-tight">Shipbuilding Plate</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side (45% Width): Hero Headline & CTA Typography -->
+                    <div class="w-full lg:w-[45%] flex flex-col justify-between py-2 pl-0 lg:pl-4">
+                        
+                        <!-- Top Tagline -->
+                        <div class="space-y-4">
+                            <div class="inline-flex items-center gap-2 px-2.5 py-1 bg-swiss-black text-white text-xs font-mono tracking-widest uppercase">
+                                <span class="w-1.5 h-1.5 bg-swiss-red"></span>
+                                Global Supply Chain
+                            </div>
+
+                            <!-- Row 1: Headline -->
+                            <h2 class="text-3xl sm:text-4xl xl:text-5xl font-black text-swiss-black tracking-tight leading-none uppercase">
+                                FULL-CATEGORY<br>
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-swiss-black via-slate-800 to-slate-500">STEEL MARKET</span>
+                            </h2>
+
+                            <!-- Row 2: Subtitle Description -->
+                            <p class="text-base sm:text-lg text-slate-600 font-normal leading-relaxed border-l-2 border-swiss-black pl-4 my-6">
+                                You can source all types and specifications of premium steel products here. Direct mill procurement, certified quality control, and worldwide logistics.
+                            </p>
+                        </div>
+
+                        <!-- Row 3 & Row 4: Interactive CTA Button Flow -->
+                        <div class="pt-6 border-t border-swiss-border">
+                            <div class="flex flex-col sm:flex-row items-start sm:items-baseline gap-4">
+                                <!-- Row 3: Send Inquiry Button -->
+                                <button onclick="openInquiryModal()" class="btn-spring group px-8 py-5 bg-swiss-black hover:bg-swiss-red text-white text-base font-bold uppercase tracking-wider rounded-sm shadow-md flex items-center gap-4 w-full sm:w-auto justify-center">
+                                    <span>Send Inquiry</span>
+                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                    </svg>
+                                </button>
+                                
+                                <!-- Row 4: Typographic Accent "to us!" -->
+                                <div class="font-black text-3xl sm:text-4xl text-swiss-black tracking-tighter italic font-mono select-none">
+                                    to us! <span class="text-swiss-red not-italic text-2xl font-sans">↗</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 grid grid-cols-2 gap-4 text-xs font-mono text-swiss-muted">
+                                <div>
+                                    <span class="block font-bold text-swiss-black">INSTANT QUOTE</span>
+                                    <span>Response within 2 hours</span>
+                                </div>
+                                <div>
+                                    <span class="block font-bold text-swiss-black">FREE SAMPLES</span>
+                                    <span>Available upon request</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECOND SCREEN: WORLD MAP & GLOBAL REACH -->
+        <section class="py-16 lg:py-24 bg-swiss-darkGray text-white relative overflow-hidden">
+            <!-- Background Swiss Grid Lines -->
+            <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-slate-800 pb-6">
+                    <div>
+                        <span class="text-xs font-mono text-swiss-red tracking-widest uppercase block mb-1">// GLOBAL TRADE FOOTPRINT</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight uppercase">Worldwide Supply Network</h2>
+                    </div>
+                    <p class="text-xs font-mono text-slate-400 mt-2 md:mt-0 max-w-md">
+                        Connecting Hainan Free Trade Port to major industrial hubs across 50+ countries with end-to-end maritime shipping solutions.
+                    </p>
+                </div>
+
+                <!-- SVG Vector World Map Container -->
+                <div class="relative w-full aspect-[2/1] max-h-[500px] bg-black/40 border border-slate-800 rounded-sm p-4 flex items-center justify-center overflow-hidden">
+                    
+                    <!-- Simplified High-Precision Vector SVG World Map -->
+                    <svg class="w-full h-full text-slate-700/60 fill-current" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Simplified Continental Outlines -->
+                        <!-- North America -->
+                        <path d="M150,120 Q180,90 240,100 T320,130 T280,220 T200,250 T120,180 Z" />
+                        <!-- South America -->
+                        <path d="M280,270 Q320,280 350,340 T310,440 T260,380 T270,300 Z" />
+                        <!-- Europe -->
+                        <path d="M470,100 Q530,90 580,120 T560,180 T480,170 T450,130 Z" />
+                        <!-- Africa -->
+                        <path d="M480,190 Q560,190 590,260 T550,370 T470,320 T460,240 Z" />
+                        <!-- Asia -->
+                        <path d="M590,100 Q720,80 840,130 T880,240 T750,280 T620,200 Z" />
+                        <!-- Australia -->
+                        <path d="M780,330 Q840,320 870,360 T820,420 T760,380 Z" />
+                        
+                        <!-- Shipping Route Connection Lines (Arcs) -->
+                        <path d="M 720,210 Q 600,160 520,130" fill="none" stroke="#E63946" stroke-width="1.5" stroke-dasharray="4,4" class="opacity-60" />
+                        <path d="M 720,210 Q 620,220 540,240" fill="none" stroke="#E63946" stroke-width="1.5" stroke-dasharray="4,4" class="opacity-60" />
+                        <path d="M 720,210 Q 480,200 240,180" fill="none" stroke="#E63946" stroke-width="1.5" stroke-dasharray="4,4" class="opacity-60" />
+                        <path d="M 720,210 Q 800,280 820,350" fill="none" stroke="#E63946" stroke-width="1.5" stroke-dasharray="4,4" class="opacity-60" />
+
+                        <!-- Interactive Nodes / Steel Hubs -->
+                        <!-- Hainan Port (HQ - Red Hotspot) -->
+                        <g transform="translate(720, 210)">
+                            <circle r="12" class="fill-swiss-red/30 pulse-ring" />
+                            <circle r="5" class="fill-swiss-red" />
+                            <text x="10" y="4" class="text-[11px] font-mono font-bold fill-white">Hainan HQ</text>
+                        </g>
+
+                        <!-- Middle East - Dubai -->
+                        <g transform="translate(580, 210)">
+                            <circle r="8" class="fill-amber-400/30 pulse-ring" />
+                            <circle r="3.5" class="fill-amber-400" />
+                            <text x="8" y="3" class="text-[9px] font-mono fill-slate-300">Dubai Hub</text>
+                        </g>
+
+                        <!-- Europe - Hamburg -->
+                        <g transform="translate(510, 125)">
+                            <circle r="8" class="fill-amber-400/30 pulse-ring" />
+                            <circle r="3.5" class="fill-amber-400" />
+                            <text x="8" y="3" class="text-[9px] font-mono fill-slate-300">Rotterdam/Hamburg</text>
+                        </g>
+
+                        <!-- Americas - Houston -->
+                        <g transform="translate(210, 175)">
+                            <circle r="8" class="fill-amber-400/30 pulse-ring" />
+                            <circle r="3.5" class="fill-amber-400" />
+                            <text x="8" y="3" class="text-[9px] font-mono fill-slate-300">Houston Port</text>
+                        </g>
+
+                        <!-- SEA - Singapore -->
+                        <g transform="translate(730, 260)">
+                            <circle r="8" class="fill-amber-400/30 pulse-ring" />
+                            <circle r="3.5" class="fill-amber-400" />
+                            <text x="8" y="3" class="text-[9px] font-mono fill-slate-300">Singapore</text>
+                        </g>
+                        
+                        <!-- LATAM - Santos -->
+                        <g transform="translate(320, 360)">
+                            <circle r="8" class="fill-amber-400/30 pulse-ring" />
+                            <circle r="3.5" class="fill-amber-400" />
+                            <text x="8" y="3" class="text-[9px] font-mono fill-slate-300">Brazil</text>
+                        </g>
+                    </svg>
+
+                    <!-- Overlay Map Badge -->
+                    <div class="absolute bottom-4 left-4 bg-swiss-black/90 border border-slate-700 p-3 rounded-sm backdrop-blur">
+                        <div class="flex items-center gap-2 text-xs font-mono">
+                            <span class="w-2.5 h-2.5 rounded-full bg-swiss-red animate-ping"></span>
+                            <span class="text-white">LIVE SHIPPING ROUTES ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Counter Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-sm">
+                        <span class="text-xs font-mono text-slate-400 uppercase block mb-1">Export Destinations</span>
+                        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white tracking-tight">
+                            <span class="counter" data-target="52">0</span>+
+                        </div>
+                        <span class="text-xs text-slate-500 mt-1 block">Countries Across 5 Continents</span>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-sm">
+                        <span class="text-xs font-mono text-slate-400 uppercase block mb-1">Annual Capacity</span>
+                        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white tracking-tight">
+                            <span class="counter" data-target="1.2">0</span>M+ <span class="text-base text-swiss-red">Tons</span>
+                        </div>
+                        <span class="text-xs text-slate-500 mt-1 block">Steel Products Trade Volume</span>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-sm">
+                        <span class="text-xs font-mono text-slate-400 uppercase block mb-1">Quality Assurance</span>
+                        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-white tracking-tight">
+                            100%
+                        </div>
+                        <span class="text-xs text-slate-500 mt-1 block">ISO9001 & CE Certified</span>
+                    </div>
+
+                    <div class="bg-slate-900 border border-slate-800 p-6 rounded-sm">
+                        <span class="text-xs font-mono text-slate-400 uppercase block mb-1">Hainan Policy</span>
+                        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400 tracking-tight">
+                            0%
+                        </div>
+                        <span class="text-xs text-slate-500 mt-1 block">Free Trade Port Tariff Advantages</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- THIRD SCREEN: PROJECTS SHOWCASE (SWISS CARD GRID) -->
+        <section id="projects" class="py-16 lg:py-24 bg-white border-b border-swiss-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-swiss-black pb-4">
+                    <div>
+                        <span class="text-xs font-mono text-swiss-muted tracking-widest uppercase block mb-1">// PROJECT PORTFOLIO</span>
+                        <h2 class="text-2xl sm:text-4xl font-extrabold text-swiss-black tracking-tight uppercase">Featured Structural Engineering</h2>
+                    </div>
+                    <div class="mt-4 md:mt-0 text-xs font-mono text-slate-500">
+                        SHOWING 6 OF 140+ COMPLETED PROJECTS WORLDWIDE
+                    </div>
+                </div>
+
+                <!-- Card Layout Grid: 3 columns desktop, 2 columns tablet, 1 column mobile -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    
+                    <!-- Card 1 -->
+                    <article class="swiss-card bg-white border border-swiss-border rounded-sm overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <!-- Cover Image -->
+                            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Skyscraper Steel" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/f1f5f9/0f172a?text=Skyscraper+Beams'">
+                                <span class="absolute top-3 left-3 bg-swiss-black text-white text-[10px] font-mono px-2 py-0.5 uppercase tracking-widest">
+                                    SINGAPORE
+                                </span>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] font-mono text-swiss-muted uppercase">High-Rise Construction</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 font-bold">12,000 Tons</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-swiss-black tracking-tight mb-2">
+                                    Skyscraper Structural Beams
+                                </h3>
+                                <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                                    Supplied high-strength ASTM A992 H-beams and custom columns for a 65-story commercial tower in downtown Singapore.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                            <span class="inline-block px-2.5 py-1 bg-swiss-gray text-swiss-black text-[10px] font-mono font-semibold rounded-xs">
+                                Structural Steel
+                            </span>
+                            <button onclick="openProjectModal('Skyscraper Structural Beams')" class="btn-spring px-3 py-1.5 border border-swiss-black hover:bg-swiss-black hover:text-white text-xs font-mono font-bold uppercase">
+                                View Details
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="swiss-card bg-white border border-swiss-border rounded-sm overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80" alt="Offshore Wind" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/f1f5f9/0f172a?text=Offshore+Wind'">
+                                <span class="absolute top-3 left-3 bg-swiss-black text-white text-[10px] font-mono px-2 py-0.5 uppercase tracking-widest">
+                                    NORTH SEA
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] font-mono text-swiss-muted uppercase">Energy Infrastructure</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 font-bold">28,000 Tons</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-swiss-black tracking-tight mb-2">
+                                    Offshore Wind Platform
+                                </h3>
+                                <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                                    High-yield structural steel plates (S355ML/S460ML) engineered specifically for harsh marine corroding environments.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                            <span class="inline-block px-2.5 py-1 bg-swiss-gray text-swiss-black text-[10px] font-mono font-semibold rounded-xs">
+                                Marine Grade
+                            </span>
+                            <button onclick="openProjectModal('Offshore Wind Platform')" class="btn-spring px-3 py-1.5 border border-swiss-black hover:bg-swiss-black hover:text-white text-xs font-mono font-bold uppercase">
+                                View Details
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="swiss-card bg-white border border-swiss-border rounded-sm overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                                <img src="https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80" alt="Mega Bridge" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/f1f5f9/0f172a?text=Bridge+Girders'">
+                                <span class="absolute top-3 left-3 bg-swiss-black text-white text-[10px] font-mono px-2 py-0.5 uppercase tracking-widest">
+                                    MIDDLE EAST
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] font-mono text-swiss-muted uppercase">Transportation</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 font-bold">45,000 Tons</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-swiss-black tracking-tight mb-2">
+                                    Mega Bridge Steel Girders
+                                </h3>
+                                <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                                    Heavy plate fabrications and weather-resistant structural steel for cross-sea bridge superstructures.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                            <span class="inline-block px-2.5 py-1 bg-swiss-gray text-swiss-black text-[10px] font-mono font-semibold rounded-xs">
+                                Heavy Plate
+                            </span>
+                            <button onclick="openProjectModal('Mega Bridge Steel Girders')" class="btn-spring px-3 py-1.5 border border-swiss-black hover:bg-swiss-black hover:text-white text-xs font-mono font-bold uppercase">
+                                View Details
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="swiss-card bg-white border border-swiss-border rounded-sm overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                                <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80" alt="Industrial Logistics Hub" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/f1f5f9/0f172a?text=Warehouse+Framework'">
+                                <span class="absolute top-3 left-3 bg-swiss-black text-white text-[10px] font-mono px-2 py-0.5 uppercase tracking-widest">
+                                    GERMANY
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] font-mono text-swiss-muted uppercase">Logistics Hub</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 font-bold">8,500 Tons</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-swiss-black tracking-tight mb-2">
+                                    Industrial Warehouse Framework
+                                </h3>
+                                <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                                    Galvanized C/Z purlins, trusses, and color-coated steel roofing sheets for automated distribution center.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                            <span class="inline-block px-2.5 py-1 bg-swiss-gray text-swiss-black text-[10px] font-mono font-semibold rounded-xs">
+                                Coated Coil
+                            </span>
+                            <button onclick="openProjectModal('Industrial Warehouse Framework')" class="btn-spring px-3 py-1.5 border border-swiss-black hover:bg-swiss-black hover:text-white text-xs font-mono font-bold uppercase">
+                                View Details
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="swiss-card bg-white border border-swiss-border rounded-sm overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                                <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?auto=format&fit=crop&w=800&q=80" alt="High Speed Rail" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/f1f5f9/0f172a?text=Rail+Steel'">
+                                <span class="absolute top-3 left-3 bg-swiss-black text-white text-[10px] font-mono px-2 py-0.5 uppercase tracking-widest">
+                                    INDONESIA
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] font-mono text-swiss-muted uppercase">Rail Transit</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 font-bold">35,000 Tons</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-swiss-black tracking-tight mb-2">
+                                    High-Speed Rail Track System
+                                </h3>
+                                <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                                    Premium 60kg/m continuous welded rails and reinforced deformed steel bars for high-speed rail corridor.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                            <span class="inline-block px-2.5 py-1 bg-swiss-gray text-swiss-black text-[10px] font-mono font-semibold rounded-xs">
+                                Rail & Rebar
+                            </span>
+                            <button onclick="openProjectModal('High-Speed Rail Track System')" class="btn-spring px-3 py-1.5 border border-swiss-black hover:bg-swiss-black hover:text-white text-xs font-mono font-bold uppercase">
+                                View Details
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="swiss-card bg-white border border-swiss-border rounded-sm overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                                <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80" alt="Shipbuilding" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/f1f5f9/0f172a?text=Shipbuilding+Plates'">
+                                <span class="absolute top-3 left-3 bg-swiss-black text-white text-[10px] font-mono px-2 py-0.5 uppercase tracking-widest">
+                                    SOUTH KOREA
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[11px] font-mono text-swiss-muted uppercase">Maritime Industry</span>
+                                    <span class="text-[11px] font-mono text-emerald-600 font-bold">19,000 Tons</span>
+                                </div>
+                                <h3 class="text-lg font-bold text-swiss-black tracking-tight mb-2">
+                                    Shipbuilding Steel Plates
+                                </h3>
+                                <p class="text-xs text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                                    DNV-GL and ABS classification society certified Grade A/DH36 steel plates for ultra-large container vessels.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 flex items-center justify-between border-t border-slate-100 mt-2">
+                            <span class="inline-block px-2.5 py-1 bg-swiss-gray text-swiss-black text-[10px] font-mono font-semibold rounded-xs">
+                                Certified Plate
+                            </span>
+                            <button onclick="openProjectModal('Shipbuilding Steel Plates')" class="btn-spring px-3 py-1.5 border border-swiss-black hover:bg-swiss-black hover:text-white text-xs font-mono font-bold uppercase">
+                                View Details
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR ADVANTAGES SECTION -->
+        <section id="advantages" class="py-16 bg-swiss-gray border-b border-swiss-border">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="text-xs font-mono text-swiss-red tracking-widest uppercase block mb-1">// WHY CHOOSE US</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-swiss-black tracking-tight uppercase mb-10">Strategic Supply Advantages</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 border border-swiss-border rounded-sm">
+                        <div class="text-2xl font-mono font-bold text-swiss-red mb-2">01/</div>
+                        <h3 class="font-bold text-base text-swiss-black mb-2">Hainan FTP Policy Advantages</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Leveraging Hainan Free Trade Port's zero-tariff policies, simplified customs clearance, and financial incentives to lower global procurement costs.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 border border-swiss-border rounded-sm">
+                        <div class="text-2xl font-mono font-bold text-swiss-red mb-2">02/</div>
+                        <h3 class="font-bold text-base text-swiss-black mb-2">Direct Tier-1 Mill Sourcing</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Direct strategic partnerships with top-tier global steel mills ensuring mill-test certificates (MTC), exact chemical compositions, and competitive pricing.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 border border-swiss-border rounded-sm">
+                        <div class="text-2xl font-mono font-bold text-swiss-red mb-2">03/</div>
+                        <h3 class="font-bold text-base text-swiss-black mb-2">Full-Spectrum Custom Processing</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            On-demand cutting, slitting, beveling, galvanizing, shot blasting, and anti-corrosion painting before ocean freight dispatch.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- INQUIRY MODAL -->
+    <div id="inquiryModal" class="fixed inset-0 bg-swiss-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-2 border-swiss-black w-full max-w-lg p-6 sm:p-8 rounded-sm shadow-2xl relative">
+            <button onclick="closeInquiryModal()" class="absolute top-4 right-4 text-slate-400 hover:text-swiss-black">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="mb-6">
+                <span class="text-xs font-mono text-swiss-red uppercase font-bold">// DIRECT MILL INQUIRY</span>
+                <h3 class="text-2xl font-extrabold text-swiss-black uppercase tracking-tight">Request Specification Quote</h3>
+            </div>
+
+            <form id="inquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono uppercase text-swiss-black font-bold mb-1">Company Name *</label>
+                    <input type="text" required placeholder="e.g. Pacific Infrastructure Ltd" class="w-full text-xs font-mono border border-swiss-border p-2.5 focus:border-swiss-black focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-swiss-black font-bold mb-1">Work Email *</label>
+                        <input type="email" required placeholder="procurement@company.com" class="w-full text-xs font-mono border border-swiss-border p-2.5 focus:border-swiss-black focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono uppercase text-swiss-black font-bold mb-1">Steel Grade / Type</label>
+                        <input type="text" placeholder="e.g. ASTM A36 / 304 Coil" class="w-full text-xs font-mono border border-swiss-border p-2.5 focus:border-swiss-black focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-mono uppercase text-swiss-black font-bold mb-1">Estimated Tonnage & Requirement Details</label>
+                    <textarea rows="3" placeholder="Please specify thickness, dimensions, port of destination..." class="w-full text-xs font-mono border border-swiss-border p-2.5 focus:border-swiss-black focus:outline-none"></textarea>
+                </div>
+                <button type="submit" class="btn-spring w-full py-3.5 bg-swiss-black hover:bg-swiss-red text-white text-xs font-mono font-bold uppercase tracking-wider">
+                    Submit RFQ Now
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- GENERIC DETAILS MODAL -->
+    <div id="detailsModal" class="fixed inset-0 bg-swiss-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border-2 border-swiss-black w-full max-w-md p-6 rounded-sm shadow-2xl relative">
+            <button onclick="closeDetailsModal()" class="absolute top-4 right-4 text-slate-400 hover:text-swiss-black">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <span class="text-xs font-mono text-swiss-red font-bold block mb-1 uppercase">// SPECIFICATIONS</span>
+            <h3 id="modalProjectTitle" class="text-xl font-bold text-swiss-black mb-3">Project Specs</h3>
+            <p id="modalProjectBody" class="text-xs text-slate-600 leading-relaxed mb-6">
+                Detailed technical parameters, test reports, and mill certificates are available for verified buyers upon request.
+            </p>
+            <button onclick="closeDetailsModal(); openInquiryModal();" class="btn-spring w-full py-2.5 bg-swiss-black text-white text-xs font-mono uppercase font-bold">
+                Inquire Specs For This Project
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="bg-swiss-black text-white pt-16 pb-12 border-t-2 border-swiss-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+                
+                <!-- Col 1: Brand -->
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 bg-swiss-red text-white flex items-center justify-center font-black text-sm">ZJH</div>
+                        <span class="font-bold tracking-tight text-sm">ZHONGJINHAI INTERNATIONAL</span>
+                    </div>
+                    <p class="text-xs text-slate-400 font-mono leading-relaxed">
+                        Zhongjinhai International Hainan Co., Ltd.<br>
+                        Premier Global Steel Supply Chain Partner.
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <h4 class="text-xs font-mono text-swiss-red uppercase tracking-widest mb-4 font-bold">Navigation</h4>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li><a href="#company" class="hover:text-white transition-colors">Company Overview</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Steel Product Catalog</a></li>
+                        <li><a href="#projects" class="hover:text-white transition-colors">Global Project Case Studies</a></li>
+                        <li><a href="#advantages" class="hover:text-white transition-colors">Hainan FTP Advantages</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Steel Categories -->
+                <div>
+                    <h4 class="text-xs font-mono text-swiss-red uppercase tracking-widest mb-4 font-bold">Product Categories</h4>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li><a href="#" class="hover:text-white">Structural Steel (H-Beam/I-Beam)</a></li>
+                        <li><a href="#" class="hover:text-white">Hot & Cold Rolled Coils (HRC/CRC)</a></li>
+                        <li><a href="#" class="hover:text-white">Seamless Pipes & Tubing</a></li>
+                        <li><a href="#" class="hover:text-white">Galvanized & PPGI Steel</a></li>
+                        <li><a href="#" class="hover:text-white">Shipbuilding & Pressure Plate</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact & HQ -->
+                <div>
+                    <h4 class="text-xs font-mono text-swiss-red uppercase tracking-widest mb-4 font-bold">Headquarters Contact</h4>
+                    <div class="text-xs font-mono text-slate-300 space-y-2">
+                        <p><strong class="text-white">HQ:</strong> Haikou City, Hainan Free Trade Port, China</p>
+                        <p><strong class="text-white">Tel:</strong> +86 (0)898-6888-9999</p>
+                        <p><strong class="text-white">Email:</strong> export@zhongjinhai-steel.com</p>
+                        <p><strong class="text-white">Web:</strong> www.zhongjinhai-steel.com</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Lower Footer -->
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-slate-500 gap-4">
+                <div>
+                    © 2026 Zhongjinhai International Hainan Co., Ltd. All rights reserved.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-slate-300">ISO 9001:2015</a>
+                    <a href="#" class="hover:text-slate-300">CE Certified</a>
+                    <a href="#" class="hover:text-slate-300">Privacy Policy</a>
+                    <a href="#" class="hover:text-slate-300">Terms of Supply</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Language Selector Toggle
+        const langBtn = document.getElementById('langBtn');
+        const langDropdown = document.getElementById('langDropdown');
+        
+        langBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', () => {
+            langDropdown.classList.add('hidden');
+        });
+
+        function changeLang(lang) {
+            document.getElementById('currentLang').textContent = lang;
+            langDropdown.classList.add('hidden');
+        }
+
+        // Search Overlay Controls
+        const searchBtn = document.getElementById('searchBtn');
+        const searchModal = document.getElementById('searchModal');
+        const closeSearch = document.getElementById('closeSearch');
+
+        searchBtn.addEventListener('click', () => {
+            searchModal.classList.remove('hidden');
+            setTimeout(() => searchModal.classList.remove('opacity-0'), 10);
+        });
+
+        closeSearch.addEventListener('click', () => {
+            searchModal.classList.add('opacity-0');
+            setTimeout(() => searchModal.classList.add('hidden'), 200);
+        });
+
+        // Modals Controls
+        function openInquiryModal() {
+            document.getElementById('inquiryModal').classList.remove('hidden');
+        }
+
+        function closeInquiryModal() {
+            document.getElementById('inquiryModal').classList.add('hidden');
+        }
+
+        function handleInquirySubmit(e) {
+            e.preventDefault();
+            alert('Thank you! Your inquiry has been sent to our sales engineering team. We will respond within 2 hours.');
+            closeInquiryModal();
+        }
+
+        function openProjectModal(title) {
+            document.getElementById('modalProjectTitle').textContent = title;
+            document.getElementById('detailsModal').classList.remove('hidden');
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').classList.add('hidden');
+        }
+
+        // Animated Number Counters on Scroll
+        let animated = false;
+        window.addEventListener('scroll', () => {
+            const counters = document.querySelectorAll('.counter');
+            const mapSection = document.querySelector('section.bg-swiss-darkGray');
+            
+            if (mapSection) {
+                const rect = mapSection.getBoundingClientRect();
+                if (rect.top <= window.innerHeight && !animated) {
+                    animated = true;
+                    counters.forEach(counter => {
+                        const target = parseFloat(counter.getAttribute('data-target'));
+                        let count = 0;
+                        const speed = target / 30;
+                        
+                        const updateCount = () => {
+                            count += speed;
+                            if (count < target) {
+                                counter.innerText = Number.isInteger(target) ? Math.ceil(count) : count.toFixed(1);
+                                setTimeout(updateCount, 40);
+                            } else {
+                                counter.innerText = target;
+                            }
+                        };
+                        updateCount();
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
